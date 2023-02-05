@@ -1,0 +1,111 @@
+﻿openapi: 3.0.1
+info:
+  title: SquaresAPI
+  description: TBD
+  version: '1.0'
+tags:
+  - name: Points
+  - name: Squares
+paths:
+  /points:
+    get:
+      summary: Gets list of points.
+      operationId: Points
+      tags:
+        - Points
+      responses:
+        '200':
+          description: List of points
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PointsReply"
+
+    post:
+      summary: Add list of points.
+      operationId: AddList
+      tags:
+        - Points
+      requestBody:
+        description: Point object.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PointsReply"
+            example:
+              - XCoordinate: 1
+                YCoordinate: 2
+              - XCoordinate: 0
+                YCoordinate: 4
+
+      responses:
+        '201':
+          description: List of points successfully added.
+
+  /points/singlePoint:
+    post:
+      summary: Add new point.
+      operationId: AddPoint
+      tags:
+        - Points
+      requestBody:
+        description: Point object.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Point"
+      responses:
+        '201':
+          description: ID of point that has been successfully added.
+          content:
+            application/json:
+              schema:
+                type: integer
+
+  /points/singlePoint/{id}:
+    delete:
+      summary: Delete a point.
+      operationId: Delete
+      tags:
+        - Points
+      parameters:
+        - in: path
+          name: id
+          description: ID of point to be deleted
+          schema:
+            type: integer
+          required: true
+      responses:
+        '204':
+          description: Point has been successfully deleted.
+
+
+components:
+  schemas:
+    PointsReply:
+      description: Reply to points list request.
+      type: array
+      items:
+        $ref: "#/components/schemas/Point"
+      additionalProperties: false
+
+    Point:
+      description: Point object
+      type: object
+      properties:
+        id:
+          type: integer
+          nullable: true
+        XCoordinate:
+          type: integer
+        YCoordinate:
+          type: integer
+      example:
+        XCoordinate: -1
+        YCoordinate: 3
+      required:
+        - XCoordinate
+        - YCoordinate
+      additionalProperties: false

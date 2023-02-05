@@ -7,8 +7,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="NSwag.MSBuild" Version="13.18.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <Target Name="NSwag" BeforeTargets="PrepareResources">
+    <Message Text="Autogenerating Squares API code from the specification with NSwag" Importance="normal" />
+    <Exec Command="$(NSwagExe_Net70) run NSwag/NSwagSettings.nswag /variables:Configuration=$(Configuration),SpecFile=SquaresAPI,APINamespace=SquresAPI,OutputFile=C:\API\SquaresAPI\SquaresAPI\NSwag\SquaresAPI.cs" />
+  </Target>
+  
 </Project>
