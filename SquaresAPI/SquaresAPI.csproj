@@ -19,7 +19,7 @@
 
   <Target Name="NSwag" BeforeTargets="PrepareResources">
     <Message Text="Autogenerating Squares API code from the specification with NSwag" Importance="normal" />
-    <Exec Command="$(NSwagExe_Net70) run NSwag/NSwagSettings.nswag /variables:Configuration=$(Configuration),SpecFile=SquaresAPI,APINamespace=SquresAPI,OutputFile=C:\API\SquaresAPI\SquaresAPI\NSwag\SquaresAPI.cs" />
+    <Exec Command="$(NSwagExe_Net70) run /SquaresAPI/NSwag/NSwagSettings.nswag /variables:Configuration=$(Configuration),SpecFile=SquaresAPI,APINamespace=SquresAPI,OutputFile=C:\API\SquaresAPI\SquaresAPI\NSwag\SquaresAPI.cs" />
   </Target>
   
 </Project>

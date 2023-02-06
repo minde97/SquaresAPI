@@ -17,7 +17,6 @@ public class Storage
 	/// <param name="pointDto">Point object.</param>
 	public void AddPoint(PointDto pointDto)
 	{
-		throw new ArgumentNullException();
 		pointDto.Id = Helpers.Helpers.GetId(this.listOfPoints.Count);
 		this.listOfPoints.Add(pointDto);
 	}
