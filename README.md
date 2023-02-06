@@ -11,4 +11,4 @@ To read and understand api go to [Swagger Editor](https://editor.swagger.io/) an
 - Extract it
 - go to **net7.0** folder
 - Execute **SquaresAPI.exe**
-- Execute calls to given localhost.
+- Execute calls to given localhost listening port.
