@@ -14,6 +14,6 @@ public static class Helpers
 		return $"({pointA.XCoordinate};{pointA.YCoordinate}), "
 		       + $"({pointB.XCoordinate};{pointB.YCoordinate}), "
 		       + $"({pointC.XCoordinate};{pointC.YCoordinate}), "
-		       + $"({pointD.XCoordinate};{pointD.YCoordinate}),";
+		       + $"({pointD.XCoordinate};{pointD.YCoordinate})";
 	}
 }

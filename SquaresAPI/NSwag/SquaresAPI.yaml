@@ -20,6 +20,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/PointsReply"
+        '500':
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FailureResponse"
 
     post:
       summary: Add list of points.
@@ -34,14 +40,36 @@ paths:
             schema:
               $ref: "#/components/schemas/PointsReply"
             example:
+              - XCoordinate: 0
+                YCoordinate: 0
+              - XCoordinate: 0
+                YCoordinate: 1
+              - XCoordinate: 1
+                YCoordinate: 0
+              - XCoordinate: 1
+                YCoordinate: 1
               - XCoordinate: 1
                 YCoordinate: 2
-              - XCoordinate: 0
-                YCoordinate: 4
+              - XCoordinate: 2
+                YCoordinate: 1
+              - XCoordinate: 2
+                YCoordinate: 2
 
       responses:
         '201':
           description: List of points successfully added.
+        '400':
+          description: Data in the request was invalid or formatted incorrectly.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FailureResponse"
+        '500':
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FailureResponse"
 
   /points/singlePoint:
     post:
@@ -63,6 +91,18 @@ paths:
             application/json:
               schema:
                 type: integer
+        '400':
+          description: Data in the request was invalid or formatted incorrectly.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FailureResponse"
+        '500':
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FailureResponse"
 
   /points/singlePoint/{id}:
     delete:
@@ -80,6 +120,18 @@ paths:
       responses:
         '204':
           description: Point has been successfully deleted.
+        '400':
+          description: Data in the request was invalid or formatted incorrectly.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FailureResponse"
+        '404':
+          description: Provided point doesn't exist.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FailureResponse"
 
   /squares:
     get:
@@ -94,6 +146,12 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/SquaresReply"
+        '500':
+          description: Unexpected error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FailureResponse"
 
 components:
   schemas:
@@ -134,4 +192,17 @@ components:
       description: Square angles.
       type: string
       example:
-        '(-1;1), (1;1), (1;-1), (-1;-1)'
+          '(0;0), (0;1), (1;0), (1;1)'
+            '(0;1), (1;2), (1;0), (2;1)'
+            '(1;1), (1;2), (2;1), (2;2)'
+
+    FailureResponse:
+      description: Response resource wrapping overall error and all the individual errors which occurred while processing request. Usually used with HTTP/4xx and HTTP/5xx status codes.
+      type: object
+      properties:
+        code:
+          description: Overall error code.
+          type: integer
+        message:
+          description: Overall error message.
+          type: string

@@ -47,8 +47,8 @@ public class SquareManagerTests
 
 		//Assert
 		Assert.AreEqual(3, result.Count);
-		Assert.IsTrue(result.Contains("(0;0), (0;1), (1;0), (1;1),"));
-		Assert.IsTrue(result.Contains("(0;1), (1;2), (1;0), (2;1),"));
-		Assert.IsTrue(result.Contains("(1;1), (1;2), (2;1), (2;2),"));
+		Assert.IsTrue(result.Contains("(0;0), (0;1), (1;0), (1;1)"));
+		Assert.IsTrue(result.Contains("(0;1), (1;2), (1;0), (2;1)"));
+		Assert.IsTrue(result.Contains("(1;1), (1;2), (2;1), (2;2)"));
 	}
 }
