@@ -24,15 +24,22 @@ public class SquareManager : ISquareManager
 
 	private IEnumerable<string> CalculatePossibleSquares(List<PointDto> pointsList)
 	{
+		if (pointsList.Count == 0)
+		{
+			return new List<string>();
+		}
+
+		var listOfPoints = pointsList;
 		var queue = new Queue<PointDto>(pointsList);
-		var pivot = queue.Dequeue();
 		var pointA = new PointDto();
 		var pointB = new PointDto();
 		var squares = new List<string>();
+		var pivot = queue.Dequeue();
 
 		while (queue.Count != 0)
 		{
-			pointsList.Remove(pivot);
+
+			listOfPoints.Remove(pivot);
 			foreach (var point in queue)
 			{
 				var dx = point.YCoordinate - pivot.YCoordinate;
@@ -44,7 +51,7 @@ public class SquareManager : ISquareManager
 				pointB.XCoordinate = point.XCoordinate + dx;
 				pointB.YCoordinate = point.YCoordinate + dy;
 
-				if (this.CheckIfListContainsPoints(pointA, pointB, pointsList))
+				if (this.CheckIfListContainsPoints(pointA, pointB, listOfPoints))
 				{
 					squares.Add(Helpers.Helpers.PointsToString(pivot, point, pointA, pointB));
 				}
