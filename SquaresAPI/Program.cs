@@ -1,4 +1,5 @@
 using SquaresAPI.Data;
+using SquaresAPI.Managers;
 using SquaresAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,8 +12,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddSingleton<Storage>();
+builder.Services.AddScoped<ISquareManager, SquareManager>();
 builder.Services.AddScoped<IDataLayerService, DataLayerService>();
 builder.Services.AddScoped<IPointsService, PointsService>();
+builder.Services.AddScoped<ISquaresService, SquaresService>();
 
 var app = builder.Build();
 

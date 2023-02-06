@@ -1,7 +1,7 @@
 ﻿openapi: 3.0.1
 info:
   title: SquaresAPI
-  description: TBD
+  description: Squares API
   version: '1.0'
 tags:
   - name: Points
@@ -58,7 +58,7 @@ paths:
               $ref: "#/components/schemas/Point"
       responses:
         '201':
-          description: ID of point that has been successfully added.
+          description: Id of point that has been successfully added.
           content:
             application/json:
               schema:
@@ -73,7 +73,7 @@ paths:
       parameters:
         - in: path
           name: id
-          description: ID of point to be deleted
+          description: Id of point to be deleted
           schema:
             type: integer
           required: true
@@ -81,6 +81,19 @@ paths:
         '204':
           description: Point has been successfully deleted.
 
+  /squares:
+    get:
+      summary: Gets list of possible squares.
+      operationId: GetSquares
+      tags:
+        - Squares
+      responses:
+        '200':
+          description: List of squares
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SquaresReply"
 
 components:
   schemas:
@@ -92,7 +105,7 @@ components:
       additionalProperties: false
 
     Point:
-      description: Point object
+      description: Point object.
       type: object
       properties:
         id:
@@ -109,3 +122,16 @@ components:
         - XCoordinate
         - YCoordinate
       additionalProperties: false
+
+    SquaresReply:
+      description: Reply to list of squares request.
+      type: array
+      items:
+        $ref: "#/components/schemas/Square"
+      additionalProperties: false
+
+    Square:
+      description: Square angles.
+      type: string
+      example:
+        '(-1;1), (1;1), (1;-1), (-1;-1)'
