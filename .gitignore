@@ -364,3 +364,6 @@ FodyWeavers.xsd
 
 # Jetbrains Rider
 .idea/
+
+# Specific auto generated files
+SquaresAPI.cs
