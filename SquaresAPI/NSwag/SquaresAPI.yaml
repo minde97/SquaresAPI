@@ -192,9 +192,7 @@ components:
       description: Square angles.
       type: string
       example:
-          '(0;0), (0;1), (1;0), (1;1)'
-            '(0;1), (1;2), (1;0), (2;1)'
-            '(1;1), (1;2), (2;1), (2;2)'
+        '(0;0), (0;1), (1;0), (1;1)'
 
     FailureResponse:
       description: Response resource wrapping overall error and all the individual errors which occurred while processing request. Usually used with HTTP/4xx and HTTP/5xx status codes.
